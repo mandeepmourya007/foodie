@@ -1,4 +1,5 @@
 from django.shortcuts import render
-
+from product.models import restaurant 
 def home(request):
-	return render(request,"home.html")
+	res=restaurant.objects.all()
+	return render(request,"home.html",{"res":res})

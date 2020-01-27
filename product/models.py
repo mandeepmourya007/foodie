@@ -4,7 +4,7 @@ from django.db import models
 class food(models.Model):
     name = models.CharField(max_length=100)
     detail=models.TextField()
-    image=models.FileField(null=True,blank=True,upload_to="static/events/images")
+    image=models.FileField(null=True,blank=True,upload_to="static/product/food/images")
     price = models.CharField(max_length=10,default = 'Free')
     
    
@@ -15,7 +15,7 @@ class restaurant(models.Model):
     name = models.CharField(max_length=100)
     menu = models.ManyToManyField('food',blank=True)
     address=models.TextField()
-    image=models.FileField(null=True,blank=True,upload_to="static/events/images")
+    image=models.FileField(null=True,blank=True,upload_to="static/product/restaurant/images")
    
     
    

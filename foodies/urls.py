@@ -21,7 +21,8 @@ from django.conf.urls import url,include
 
 from django.contrib.auth import views as auth_views
 urlpatterns =[
-	path("",views.home),
+	path("",views.home,name='home'),
+    path("product/",include('product.urls')),
 	    
      path("accounts/",include("accounts.urls",namespace="accounts")),
     path('admin/', admin.site.urls),
