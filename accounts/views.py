@@ -24,7 +24,7 @@ def log_in(request):
             if user is not None:
                 login(request,user)
                 
-                return redirect("events:event")
+                return redirect("home")
         return render(request,"accounts/login.html")
         
 
