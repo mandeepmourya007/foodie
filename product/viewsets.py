@@ -1,10 +1,10 @@
-from  rest_framwork import viewsets
+from  rest_framework import viewsets
 from . import models
 from . import serializers
 
 
-class foodViewset(viewsets.ModelViewset):
+class foodViewset(viewsets.ModelViewSet):
 	"""docstring for foodViewset"""
-	q=models.food.objects.all()
-	sc= serializers.food_S
+	queryset=models.food.objects.all()
+	serializer_class= serializers.food_S
 	

@@ -20,10 +20,12 @@ from . import views
 from django.conf.urls import url,include
 
 from django.contrib.auth import views as auth_views
+from . router  import router
+
 urlpatterns =[
 	path("",views.home,name='home'),
     path("product/",include('product.urls')),
-	    
+	path("api/",include(router.urls)),
      path("accounts/",include("accounts.urls",namespace="accounts")),
     path('admin/', admin.site.urls),
     
