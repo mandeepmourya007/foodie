@@ -6,3 +6,8 @@ class food_S(serializers.ModelSerializer):
 		model=food
 		fields='__all__'
 	#	field=["name","detail",'image',"price"]
+class rest_S(serializers.ModelSerializer):
+	class Meta:
+		model=restaurant
+		fields='__all__'
+	#	field=["name","detail",'image',"price"]

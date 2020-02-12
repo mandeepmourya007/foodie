@@ -6,11 +6,18 @@
 
 	 
 	 <h1>  {{ restaurant.name }}</h1>
-
+     
+	 <h1>  </h1>
+    {% if request.user.is_staff %}
+<a href=http://127.0.0.1:8000/admin/product/restaurant/{{ restaurant.id }}/change/>EDIT</a>
+{% endif %}
 <br>
 <h2> our menu</h2>
 {% for r in restaurant.menu.all %} 
-	  <h4>{{ r }}</h4>
+
+	  <h4>{{ r }}</h4>{% if request.user.is_staff %}<a href=http://127.0.0.1:8000/admin/product/food/{{ r.id }}/change/> EDIT</a>
+
+{% endif %}
 
    {%  endfor %}
 

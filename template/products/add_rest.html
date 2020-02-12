@@ -1,0 +1,26 @@
+
+
+
+
+{% extends "common.html" %}
+{% load static %}
+
+{% block title %}	foodie  {% endblock  %}
+
+
+
+{% block body %}
+<h3> ADD</h3>
+
+	
+<form action=" " method="post">
+    {% csrf_token %}
+    {{ f }}
+    <input type="submit" value="Submit">
+</form>
+
+<br>
+
+
+ {% endblock  %}
+
