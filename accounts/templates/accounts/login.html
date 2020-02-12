@@ -1,5 +1,10 @@
 
-                        
+       {% extends "common.html" %}
+{% load static %}
+{% block title %}	foodie  {% endblock  %}
+{% block body %}
+
+                 
                     <form class="form" method="POST" action="">
                         {% csrf_token %}
 
@@ -20,3 +25,4 @@
                           
        
     </form>
+    {% endblock %}
