@@ -5,7 +5,7 @@ from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 
-
+from django.contrib.auth.models import Group
 
 
 
@@ -35,9 +35,10 @@ def sign_up(request):
             form.save()
             username = form.cleaned_data.get('username')
             raw_password = form.cleaned_data.get('password1')
-            user = authenticate(username=username, password=raw_password)
+            user = authenticate(username=username, password=raw_password,is_active=False)
+            messages.info(request, 'your account is under verification')
         
-            login(request, user)
+            
             return redirect('home')
     else:
         form = UserCreationForm()

@@ -4,36 +4,33 @@
 {% block title %}	{{ restaurant }}  {% endblock  %}
 {% block body %}
 
-	 
-	 <h1>  {{ restaurant.name }}</h1>
-     
-	 <h1>  </h1>
-    {% if request.user.is_staff %}
-<a href=http://127.0.0.1:8000/admin/product/restaurant/{{ restaurant.id }}/change/>EDIT</a>
-{% endif %}
-<br>
-<h2> our menu</h2>
-{% for r in restaurant.menu.all %} 
+	
+<div style="text-align: center;margin-left: 35%; margin-top: 19px;">
+<div class="card" style="width: 18rem;text-align: center;">
+   <img src="../{{ restaurant.image }}" class="card-img-top" alt="...">
+   <div class="card-body">
+     <h5 class="card-title">{{ restaurant.name }}</h5>
+     <p class="card-text">DECSRIPTION</p>
+   </div>
+   <ul class="list-group list-group-flush">
+     <li class="list-group-item">OUR ITEMS</li>
 
-	  <h4>{{ r }}</h4>{% if request.user.is_staff %}<a href=http://127.0.0.1:8000/admin/product/food/{{ r.id }}/change/> EDIT</a>
+     {% for r in restaurant.menu.all %} 
 
+     <li class="list-group-item">{{ r }}{% if request.user.is_staff %} &nbsp; &nbsp;
+     <a class="stretched-link" style="color:purple" href=http://127.0.0.1:8000/admin/product/food/{{ r.id }}/change/> EDIT</a>
+   </li>
 {% endif %}
 
    {%  endfor %}
 
-
-<br>
-
-<h4> Address: {{ restaurant.address }}</h4>
-
-<br>
-
-   <img width="200" height="100" src=../{{ restaurant.image }} >
-<h4>  </h4>
-
-{{ restaurant.image }}
-<br>
-
+      
+   </ul>
+   <div class="card-body">
+      <h5> Address: {{ restaurant.address }}</h5>
+   </div>
+ </div>
+</div>
 
 
  {% endblock  %}

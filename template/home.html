@@ -4,14 +4,20 @@
 {% block title %}	foodie  {% endblock  %}
 {% block body %}
 
-<h3> RESTAUARTS</h3> {% if request.user.is_superuser %}
+<h3 class="display-3 center px-2" style="text-align: center;"> <b>RESTAUARTS</b></h3> {% if request.user.is_superuser %}
 
 <a href=http://127.0.0.1:8000/admin/product/restaurant/add/> ADD new</a>
+<div style="">
+<ul  class="list-group" style="">
 {% endif %}
 	{% for r in res %} 
-	<a href="product/{{ r }}">  <h4>{{ r }}</h4>
-</a>
-<br>
+	<li class="list-group-item " onMouseOver="this.style.background='silver'"
+	onMouseOut="this.style.background='whitesmoke'"  style=";border-style: none;margin-left: 15%;width:70%;background-color:whitesmoke;text-align: center;"><a class="stretched-link" style='color:darkslategray' href="product/{{ r }}">  </a><h4>{{ r }}</h4></li>
+	
+
+</ul>
+</div>
+
    {%  endfor %}
 
  {% endblock  %}
