@@ -5,6 +5,7 @@
 
 
 
+<div style="margin-left:30%;margin-top: 70px;">
  <form method="post">
     {% csrf_token %}
     {% for field in form %}
@@ -21,5 +22,5 @@
     {% endfor %}
     <button class="btn btn-dark" type="submit">update</button>
   </form>
-
+ </div>
 {% endblock %}

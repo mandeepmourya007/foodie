@@ -24,14 +24,14 @@ def log_in(request):
             u=request.POST.get("username")
             p=request.POST.get("password")
             user=authenticate(request,username=u,password=p)
-           # print("\n" +user +"\n")
+            #print( user.is_active)
+            print("\n" +str(user) +"\n")
+            
+            if user is None:
+                messages.info(request, 'your account is under verification  or accont does not exist')
             if user is not None:
-                if user.is_active :
-                    print("yoyo")
-                    print( user.is_active) 
-                    login(request,user)
-                else:
-                    messages.info(request, 'your account is under verification')
+                login(request,user)
+                    
                 
                 return redirect("home")
         return render(request,"accounts/login.html")
@@ -44,9 +44,13 @@ def sign_up(request):
             form.save()
             username = form.cleaned_data.get('username')
             raw_password = form.cleaned_data.get('password1')
-            user = User.objects.create_user(username=username, password=raw_password,is_active=False)
+            # user=User.objects.create_user(username=username, password=raw_password,is_active=False)
+            # user
+            user = authenticate(username=username, password=raw_password,is_active=False)
+            user.is_active=False
+            user.save()
             messages.info(request, 'your account is under verification')
-            login(request, user)
+            
             return redirect('home')
     else:
         form = UserCreationForm()
@@ -56,7 +60,23 @@ def sign_up(request):
 def profile(request):
     user = get_object_or_404(User, username=request.user)
     return render(request, 'profile.html', {'profile_user': user})
-
+@login_required
 def update(request):
     form=UserForm()
+    if request.method == 'POST':
+        form = UserForm(request.POST)
+        if form.is_valid():
+            
+            request.user.username = form.cleaned_data.get('username')
+            request.user.first_name = form.cleaned_data.get('first_name')
+            request.user.last_name = form.cleaned_data.get('last_name')
+            request.user.email = form.cleaned_data.get('email')
+            request.user.save()
+            messages.info(request, 'your account is updated')
+            
+            return redirect('home')
+    else:
+        form =UserForm()
     return render(request,"update.html",{"form":form})
+    
+    
